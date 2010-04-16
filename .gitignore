@@ -1,0 +1,4 @@
+.DS_Store
+tests/TestConfiguration.php
+example/flickr/_config.php
+example/_cache/*

@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+require_once '../_config.php';
+
+require_once 'Sirprize/Rest/Client.php';
+$restClient = new \Sirprize\Rest\Client($config);
+$restClient->setCache($cache);
+
+require_once 'Sirprize/Flickr.php';
+$flickr = new \Sirprize\Flickr($config);
+$flickr->setRestClient($restClient);
+
+require_once 'Sirprize/Flickr/Id.php';
+$userId = new \Sirprize\Flickr\Id(FLICKR_NSID);
+
+require_once 'Sirprize/Flickr/Core/Collection/Observer.php';
+$observerStout = new \Sirprize\Flickr\Core\Collection\Observer();
+
+$photoSets = $flickr->getPhotoSetsInstance();
+$photoSets->attachObserver($observerStout);
+$photoSets->startAllByUserId($userId);
+
+foreach($photoSets as $photoSet)
+{
+	$photoSet->getPhotos()->startByPhotoSetId($photoSet->getId());
+	
+	print $photoSet->getTitle()."\n";
+	
+	foreach($photoSet->getPhotos() as $photo)
+	{
+		print "    ".$photo->getTitle()."\n";
+		print "        ".$photo->getSizes()->getOriginalUrl()."\n";
+	}
+}

@@ -1,0 +1,27 @@
+<?php
+
+define('FLICKR_NSID', '123456789');
+define('FLICKR_COLLECTION_ID', '123456789');
+
+$config = array(
+	'apiKey' => 'xxx',
+	'secret' => 'yyy'
+);
+
+set_include_path(implode(PATH_SEPARATOR, array(
+    realpath('/path/to/zend/library'), // path to zend framework
+	realpath('/path/to/sirprize/flickr/lib') // path to flickr lib
+	realpath('/path/to/sirprize/rest/lib') // path to rest lib
+)));
+
+$frontendOptions = array(
+	'lifetime' => 7200,
+	'automatic_serialization' => true
+);
+
+$backendOptions = array(
+	'cache_dir' => dirname(__FILE__).'/_cache/'
+);
+
+require_once 'Zend/Cache.php';
+$cache = \Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
