@@ -158,6 +158,27 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	
 	
 	
+	public function getById(\Sirprize\Flickr\Id $id)
+	{
+		if(!$this->_started)
+		{
+			require_once 'Sirprize/Flickr/Exception.php';
+			throw new \Sirprize\Flickr\Exception('collection must be started before calling '.__METHOD__);
+		}
+		
+		foreach($this as $photoSet)
+		{
+			if((string) $photoSet->getId() == (string) $id)
+			{
+				return $photoSet;
+			}
+		}
+		
+		return null;
+	}
+	
+	
+	
 	protected function _getOnStartSuccessMessage()
 	{
 		return "started photoSet collection. found ".$this->count()." photoSets";
