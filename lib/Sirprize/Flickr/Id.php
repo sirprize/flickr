@@ -27,7 +27,7 @@ class Id
 	{
 		if(!preg_match(self::REGEXP, $id))
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception("invalid id format '$id'");
 		}
 		

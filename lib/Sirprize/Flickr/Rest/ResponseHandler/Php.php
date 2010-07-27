@@ -18,20 +18,20 @@
 namespace Sirprize\Flickr\Rest\ResponseHandler;
 
 
-require_once 'Sirprize/Rest/ResponseHandler/Php.php';
+#require_once 'Sirprize/Rest/ResponseHandler/Php.php';
 
 
 class Php extends \Sirprize\Rest\ResponseHandler\Php
 {
 	
-	public function load()
+	public function load(\Zend_Http_Response $httpResponse)
     {
-		parent::load();
+		parent::load($httpResponse);
 
 		if($this->_php['stat'] == 'fail')
 		{
-			$this->_serviceErrorCode = $this->_php['code'];
-			$this->_serviceErrorMessage = $this->_php['message'];
+			$this->_code = $this->_php['code'];
+			$this->_message = $this->_php['message'];
 		}
 		
 		return $this;

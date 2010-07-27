@@ -18,7 +18,7 @@
 namespace Sirprize\Flickr\Photo;
 
 
-require_once 'Sirprize/Flickr/Core/Entity.php';
+#require_once 'Sirprize/Flickr/Core/Entity.php';
 
 
 /**
@@ -57,13 +57,13 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	{
 		if($this->_loaded && !$force)
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('entity has already been loaded');
 		}
 		
 		$this->_loaded = true;
 		
-		require_once 'Sirprize/Flickr/Id.php';
+		#require_once 'Sirprize/Flickr/Id.php';
 		$id = new \Sirprize\Flickr\Id($data['id']);
 		
 		$this->_id = $id;
@@ -77,7 +77,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	{
 		if(!$this->_loaded)
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('call load() before '.__METHOD__);
 		}
 	}
@@ -93,7 +93,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 		
 		$this->_checkIsLoaded();
 		
-		require_once 'Sirprize/Flickr/Photo/Sizes.php';
+		#require_once 'Sirprize/Flickr/Photo/Sizes.php';
 		$this->_sizes = new \Sirprize\Flickr\Photo\Sizes();
 		$this->_sizes
 			->setRestClient($this->_getRestClient())

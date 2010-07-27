@@ -18,7 +18,7 @@
 namespace Sirprize\Flickr\Photo;
 
 
-require_once 'Sirprize/Flickr/Core/Entity.php';
+#require_once 'Sirprize/Flickr/Core/Entity.php';
 
 
 /**
@@ -286,6 +286,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 		);
 		
 		try {
+			/*
 			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
 			
 			$this->_getRestClient()
@@ -294,6 +295,18 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 				->setUri($uri)
 				->get($args)
 			;
+			*/
+			
+			$this->_getRestClient()
+				->getHttpClient()
+				->resetParameters()
+				->setUri($uri)
+				->setParameterGet($args)
+			;
+			
+			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $photoId));
+			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
 			
 			if($this->_responseHandler->isError())
 			{
@@ -368,7 +381,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}

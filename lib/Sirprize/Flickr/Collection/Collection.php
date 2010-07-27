@@ -18,7 +18,7 @@
 namespace Sirprize\Flickr\Collection;
 
 
-require_once 'Sirprize/Flickr/Core/Collection.php';
+#require_once 'Sirprize/Flickr/Core/Collection.php';
 
 
 /**
@@ -38,7 +38,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	 */
 	public function getCollectionInstance()
 	{
-		require_once 'Sirprize/Flickr/Collection/Entity.php';
+		#require_once 'Sirprize/Flickr/Collection/Entity.php';
 		$collection = new \Sirprize\Flickr\Collection\Entity();
 		$collection
 			->setRestClient($this->_getRestClient())
@@ -63,7 +63,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$collection instanceof \Sirprize\Flickr\Collection\Entity)
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('expecting an instance of \Sirprize\Flickr\Collection\Entity');
 		}
 		
@@ -100,14 +100,16 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 		);
 		
 		try {
-		 	$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
-			
 			$this->_getRestClient()
-				->setCacheIdFromParts(array(__METHOD__, $userId))
-				->setResponseHandler($this->_responseHandler)
+				->getHttpClient()
+				->resetParameters()
 				->setUri($uri)
-				->get($args)
+				->setParameterGet($args)
 			;
+			
+			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $userId));
+			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
 			
 			if($this->_responseHandler->isError())
 			{
@@ -125,7 +127,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -162,6 +164,18 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 		);
 		
 		try {
+			$this->_getRestClient()
+				->getHttpClient()
+				->resetParameters()
+				->setUri($uri)
+				->setParameterGet($args)
+			;
+			
+			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $id));
+			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
+			
+			/*
 		 	$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
 			
 			$this->_getRestClient()
@@ -170,6 +184,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 				->setUri($uri)
 				->get($args)
 			;
+			*/
 			
 			if($this->_responseHandler->isError())
 			{
@@ -188,7 +203,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -204,7 +219,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if($this->_loaded)
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('collection has already been loaded');
 		}
 		

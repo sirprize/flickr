@@ -18,7 +18,7 @@
 namespace Sirprize\Flickr\Collection;
 
 
-require_once 'Sirprize/Flickr/Core/Entity.php';
+#require_once 'Sirprize/Flickr/Core/Entity.php';
 
 
 /**
@@ -75,13 +75,13 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	{
 		if($this->_loaded && !$force)
 		{
-			require_once 'Sirprize/Flickr/Exception.php';
+			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('entity has already been loaded');
 		}
 		
 		$this->_loaded = true;
 		
-		require_once 'Sirprize/Flickr/Id.php';
+		#require_once 'Sirprize/Flickr/Id.php';
 		$id = new \Sirprize\Flickr\Id($data['id']);
 		
 		$this->_id = $id;
