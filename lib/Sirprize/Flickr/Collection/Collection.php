@@ -114,7 +114,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			if($this->_responseHandler->isError())
 			{
 				// service error
-				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getErrorMessage()));
+				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getMessage()));
 				return $this;
 			}
 			
@@ -189,7 +189,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			if($this->_responseHandler->isError())
 			{
 				// service error
-				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getErrorMessage()));
+				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getMessage()));
 				return null;
 			}
 			

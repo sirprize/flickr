@@ -67,6 +67,8 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 	protected $_originalMedia = null;
 	
 	
+	
+	// length 75px
 	public function getSquareWidth()
 	{
 		return $this->_squareWidth;
@@ -100,7 +102,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 	
 	
 	
-	
+	// length 100px
 	public function getThumbnailWidth()
 	{
 		return $this->_thumbnailWidth;
@@ -133,7 +135,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 	
 	
 	
-	
+	// length 240px
 	public function getSmallWidth()
 	{
 		return $this->_smallWidth;
@@ -166,7 +168,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 	
 	
 	
-	
+	// length 500px
 	public function getMediumWidth()
 	{
 		return $this->_mediumWidth;
@@ -199,7 +201,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 	
 	
 	
-	
+	// length 1024px
 	public function getLargeWidth()
 	{
 		return $this->_largeWidth;
@@ -311,7 +313,7 @@ class Sizes extends \Sirprize\Flickr\Core\Entity
 			if($this->_responseHandler->isError())
 			{
 				// service error
-				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getErrorMessage()));
+				$this->_onStartError($this->_getOnStartErrorMessage($this->_responseHandler->getMessage()));
 				return $this;
 			}
 			
