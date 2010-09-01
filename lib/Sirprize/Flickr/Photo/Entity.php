@@ -33,6 +33,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	protected $_id = null;
 	protected $_title = null;
 	protected $_sizes = null;
+	protected $_info = null;
 	
 	
 	public function getId()
@@ -102,6 +103,28 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 		;
 		
 		return $this->_sizes;
+	}
+	
+	
+	
+	public function getInfo()
+	{
+		if($this->_info !== null)
+		{
+			return $this->_info;
+		}
+		
+		$this->_checkIsLoaded();
+		
+		#require_once 'Sirprize/Flickr/Photo/Info.php';
+		$this->_info = new \Sirprize\Flickr\Photo\Info();
+		$this->_info
+			->setRestClient($this->_getRestClient())
+			->setFlickr($this->_getFlickr())
+			->startByPhotoId($this->getId())
+		;
+		
+		return $this->_info;
 	}
 	
 }
