@@ -56,9 +56,16 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	
 	public function getPhotos()
 	{
+		if(!$this->_loaded)
+		{
+			#require_once 'Sirprize/Flickr/Exception.php';
+			throw new \Sirprize\Flickr\Exception('call load() before '.__METHOD__);
+		}
+		
 		if($this->_photos === null)
 		{
 			$this->_photos = $this->_getFlickr()->getPhotosInstance();
+			$this->_photos->startByPhotoSetId($this->getId());
 		}
 		
 		return $this->_photos;
