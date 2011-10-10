@@ -8,11 +8,33 @@ $config = array(
 	'secret' => 'yyy'
 );
 
-set_include_path(implode(PATH_SEPARATOR, array(
-    realpath('/path/to/zend/library'), // path to zend framework
-	realpath('/path/to/sirprize/flickr/lib') // path to flickr lib
-	realpath('/path/to/sirprize/rest/lib') // path to rest lib
-)));
+$base = dirname(dirname(dirname(__FILE__)));
+
+require_once $base.'/vendor/doctrine2-common/lib/Doctrine/Common/ClassLoader.php';
+$loader = new \Doctrine\Common\ClassLoader('Zend', realpath($base.'/vendor/zend-framework/library'));
+$loader->setNamespaceSeparator('_');
+$loader->register();
+
+$loader = new \Doctrine\Common\ClassLoader('Doctrine\Common', realpath($base.'/vendor/doctrine2-common/lib'));
+$loader->register();
+
+$loader = new \Doctrine\Common\ClassLoader('Sirprize\Rest', realpath($base.'/vendor/sirprize-rest/lib'));
+$loader->register();
+
+$loader = new \Doctrine\Common\ClassLoader('Sirprize\Flickr', realpath($base.'/lib'));
+$loader->register();
+
+
+set_include_path(
+	implode(
+		PATH_SEPARATOR,
+		array(
+    		realpath($base.'/vendor/zend-framework/library'),
+		)
+	)
+);
+
+date_default_timezone_set('UTC');
 
 $frontendOptions = array(
 	'lifetime' => 7200,
@@ -20,8 +42,7 @@ $frontendOptions = array(
 );
 
 $backendOptions = array(
-	'cache_dir' => dirname(__FILE__).'/_cache/'
+	'cache_dir' => dirname(dirname(__FILE__)).'/_cache/'
 );
 
-require_once 'Zend/Cache.php';
 $cache = \Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
