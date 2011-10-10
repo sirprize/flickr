@@ -1,0 +1,6 @@
+[submodule "vendor/doctrine2-common"]
+	path = vendor/doctrine2-common
+	url = git://github.com/doctrine/common.git
+[submodule "vendor/sirprize-rest"]
+	path = vendor/sirprize-rest
+	url = git://github.com/sirprize/rest.git
