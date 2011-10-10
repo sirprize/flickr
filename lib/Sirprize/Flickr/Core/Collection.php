@@ -26,7 +26,7 @@ class Collection extends \SplObjectStorage
 {
 	
 	
-	protected $_flickr = null;
+	protected $_service = null;
 	protected $_restClient = null;
 	protected $_started = false;
 	protected $_loaded = false;
@@ -36,9 +36,9 @@ class Collection extends \SplObjectStorage
 	
 	
 	
-	public function setFlickr(\Sirprize\Flickr $flickr)
+	public function setService(\Sirprize\Flickr\Service $service)
 	{
-		$this->_flickr = $flickr;
+		$this->_service = $service;
 		return $this;
 	}
 	
@@ -109,15 +109,15 @@ class Collection extends \SplObjectStorage
 	
 	
 	
-	protected function _getFlickr()
+	protected function _getService()
 	{
-		if($this->_flickr === null)
+		if($this->_service === null)
 		{
 			#require_once 'Sirprize/Flickr/Exception.php';
-			throw new \Sirprize\Flickr\Exception('call setFlickr() before '.__METHOD__);
+			throw new \Sirprize\Flickr\Exception('call setService() before '.__METHOD__);
 		}
 		
-		return $this->_flickr;
+		return $this->_service;
 	}
 	
 	

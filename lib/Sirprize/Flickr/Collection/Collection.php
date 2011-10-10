@@ -42,7 +42,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 		$collection = new \Sirprize\Flickr\Collection\Entity();
 		$collection
 			->setRestClient($this->_getRestClient())
-			->setFlickr($this->_getFlickr())
+			->setService($this->_getService())
 		;
 		
 		return $collection;
@@ -93,7 +93,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 		$uri = \Zend_Uri::factory('http://api.flickr.com/services/rest/');
 		
 		$args = array(
-			'api_key' => $this->_getFlickr()->getApiKey(),
+			'api_key' => $this->_getService()->getApiKey(),
 			'format' => 'php_serial',
 			'method' => 'flickr.collections.getTree',
 			'user_id' => (string) $userId
@@ -107,8 +107,8 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 				->setParameterGet($args)
 			;
 			
-			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $userId));
-			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$cacheId = $this->_getService()->makeCacheIdFromParts(array(__METHOD__, $userId));
+			$this->_responseHandler = $this->_getService()->getResponseHandlerInstance();
 			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
 			
 			if($this->_responseHandler->isError())
@@ -156,7 +156,7 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 		$uri = \Zend_Uri::factory('http://api.flickr.com/services/rest/');
 		
 		$args = array(
-			'api_key' => $this->_getFlickr()->getApiKey(),
+			'api_key' => $this->_getService()->getApiKey(),
 			'format' => 'php_serial',
 			'method' => 'flickr.collections.getTree',
 			'collection_id' => (string) $id,
@@ -171,12 +171,12 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 				->setParameterGet($args)
 			;
 			
-			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $id));
-			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$cacheId = $this->_getService()->makeCacheIdFromParts(array(__METHOD__, $id));
+			$this->_responseHandler = $this->_getService()->getResponseHandlerInstance();
 			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
 			
 			/*
-		 	$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+		 	$this->_responseHandler = $this->_getService()->getResponseHandlerInstance();
 			
 			$this->_getRestClient()
 				->setCacheIdFromParts(array(__METHOD__, $id))

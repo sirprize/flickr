@@ -53,7 +53,7 @@ class Info extends \Sirprize\Flickr\Core\Entity
 		$uri = \Zend_Uri::factory('http://api.flickr.com/services/rest/');
 		
 		$args = array(
-			'api_key' => $this->_getFlickr()->getApiKey(),
+			'api_key' => $this->_getService()->getApiKey(),
 			'format' => 'php_serial',
 			'method' => 'flickr.photos.getInfo',
 			'photo_id' => (string) $photoId
@@ -67,8 +67,8 @@ class Info extends \Sirprize\Flickr\Core\Entity
 				->setParameterGet($args)
 			;
 			
-			$cacheId = $this->_getRestClient()->makeCacheIdFromParts(array(__METHOD__, $photoId));
-			$this->_responseHandler = $this->_getFlickr()->getResponseHandlerInstance();
+			$cacheId = $this->_getService()->makeCacheIdFromParts(array(__METHOD__, $photoId));
+			$this->_responseHandler = $this->_getService()->getResponseHandlerInstance();
 			$this->_getRestClient()->get($this->_responseHandler, 2, array(), $cacheId);
 			
 			if($this->_responseHandler->isError())

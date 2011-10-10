@@ -15,10 +15,10 @@
  */
 
 
-namespace Sirprize;
+namespace Sirprize\Flickr;
 
 
-class Flickr
+class Service
 {
 	
 	
@@ -133,7 +133,7 @@ class Flickr
 		#require_once 'Sirprize/Flickr/Collection/Collection.php';
 		$collections = new \Sirprize\Flickr\Collection\Collection();
 		$collections
-			->setFlickr($this)
+			->setService($this)
 			->setRestClient($this->_getRestClient())
 		;
 		return $collections;
@@ -145,7 +145,7 @@ class Flickr
 		#require_once 'Sirprize/Flickr/PhotoSet/Collection.php';
 		$photoSets = new \Sirprize\Flickr\PhotoSet\Collection();
 		$photoSets
-			->setFlickr($this)
+			->setService($this)
 			->setRestClient($this->_getRestClient())
 		;
 		return $photoSets;
@@ -157,10 +157,16 @@ class Flickr
 		#require_once 'Sirprize/Flickr/Photo/Collection.php';
 		$photo = new \Sirprize\Flickr\Photo\Collection();
 		$photo
-			->setFlickr($this)
+			->setService($this)
 			->setRestClient($this->_getRestClient())
 		;
 		return $photo;
+	}
+	
+	
+	public static function makeCacheIdFromParts($parts)
+	{
+		return preg_replace('/[^a-zA-Z0-9_]/', '_', implode('_', $parts));
 	}
 	
 }

@@ -8,8 +8,8 @@ $restClient = new \Sirprize\Rest\Client($config);
 $restClient->setCache($cache);
 
 #require_once 'Sirprize/Flickr.php';
-$flickr = new \Sirprize\Flickr($config);
-$flickr->setRestClient($restClient);
+$service = new \Sirprize\Flickr\Service($config);
+$service->setRestClient($restClient);
 
 #require_once 'Sirprize/Flickr/Id.php';
 $userId = new \Sirprize\Flickr\Id(FLICKR_NSID);
@@ -17,7 +17,7 @@ $userId = new \Sirprize\Flickr\Id(FLICKR_NSID);
 #require_once 'Sirprize/Flickr/Core/Collection/Observer.php';
 $observerStout = new \Sirprize\Flickr\Core\Collection\Observer();
 
-$photoSets = $flickr->getPhotoSetsInstance();
+$photoSets = $service->getPhotoSetsInstance();
 $photoSets->attachObserver($observerStout);
 $photoSets->startAllByUserId($userId);
 

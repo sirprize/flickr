@@ -58,7 +58,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 	{
 		if($this->_photoSets === null)
 		{
-			$this->_photoSets = $this->_getFlickr()->getPhotoSetsInstance();
+			$this->_photoSets = $this->_getService()->getPhotoSetsInstance();
 		}
 		
 		return $this->_photoSets;

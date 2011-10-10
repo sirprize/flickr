@@ -98,7 +98,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 		$this->_sizes = new \Sirprize\Flickr\Photo\Sizes();
 		$this->_sizes
 			->setRestClient($this->_getRestClient())
-			->setFlickr($this->_getFlickr())
+			->setService($this->_getService())
 			->startByPhotoId($this->getId())
 		;
 		
@@ -120,7 +120,7 @@ class Entity extends \Sirprize\Flickr\Core\Entity
 		$this->_info = new \Sirprize\Flickr\Photo\Info();
 		$this->_info
 			->setRestClient($this->_getRestClient())
-			->setFlickr($this->_getFlickr())
+			->setService($this->_getService())
 			->startByPhotoId($this->getId())
 		;
 		
