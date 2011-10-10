@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\Core\Collection\Observer;
 
 
-#require_once 'Sirprize/Flickr/Core/Collection/Observer.php';
 
 
 /**
@@ -45,7 +44,6 @@ class Log extends \Sirprize\Flickr\Core\Collection\Observer
 	{
 		if($this->_log === null)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('call setLog() before '.__METHOD__);
 		}
 		

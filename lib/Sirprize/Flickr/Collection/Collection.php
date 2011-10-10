@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\Collection;
 
 
-#require_once 'Sirprize/Flickr/Core/Collection.php';
 
 
 /**
@@ -38,7 +37,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	 */
 	public function getCollectionInstance()
 	{
-		#require_once 'Sirprize/Flickr/Collection/Entity.php';
 		$collection = new \Sirprize\Flickr\Collection\Entity();
 		$collection
 			->setRestClient($this->_getRestClient())
@@ -63,7 +61,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$collection instanceof \Sirprize\Flickr\Collection\Entity)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('expecting an instance of \Sirprize\Flickr\Collection\Entity');
 		}
 		
@@ -127,7 +124,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -203,7 +199,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -219,7 +214,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if($this->_loaded)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('collection has already been loaded');
 		}
 		

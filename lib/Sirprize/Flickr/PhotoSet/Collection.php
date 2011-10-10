@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\PhotoSet;
 
 
-#require_once 'Sirprize/Flickr/Core/Collection.php';
 
 
 /**
@@ -38,7 +37,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	 */
 	public function getPhotoSetInstance()
 	{
-		#require_once 'Sirprize/Flickr/PhotoSet/Entity.php';
 		$photoSet = new \Sirprize\Flickr\PhotoSet\Entity();
 		$photoSet
 			->setRestClient($this->_getRestClient())
@@ -63,7 +61,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$photoSet instanceof \Sirprize\Flickr\PhotoSet\Entity)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('expecting an instance of \Sirprize\Flickr\PhotoSet\Entity');
 		}
 		
@@ -137,7 +134,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -153,7 +149,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if($this->_loaded)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('collection has already been loaded');
 		}
 		
@@ -174,7 +169,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$this->_started)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('collection must be started before calling '.__METHOD__);
 		}
 		

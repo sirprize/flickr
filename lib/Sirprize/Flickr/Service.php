@@ -52,7 +52,6 @@ class Service
     {
         if($this->_restClient === null)
 		{
-			#require_once 'Sirprize/Rest/Client.php';
             $this->_restClient = new \Sirprize\Rest\Client();
         }
 		
@@ -123,14 +122,12 @@ class Service
 	
 	public function getResponseHandlerInstance()
 	{
-		#require_once 'Sirprize/Flickr/Rest/ResponseHandler/Php.php';
 		return new \Sirprize\Flickr\Rest\ResponseHandler\Php();
 	}
 	
 	
 	public function getCollectionsInstance()
 	{
-		#require_once 'Sirprize/Flickr/Collection/Collection.php';
 		$collections = new \Sirprize\Flickr\Collection\Collection();
 		$collections
 			->setService($this)
@@ -142,7 +139,6 @@ class Service
 	
 	public function getPhotoSetsInstance()
 	{
-		#require_once 'Sirprize/Flickr/PhotoSet/Collection.php';
 		$photoSets = new \Sirprize\Flickr\PhotoSet\Collection();
 		$photoSets
 			->setService($this)
@@ -154,7 +150,6 @@ class Service
 	
 	public function getPhotosInstance()
 	{
-		#require_once 'Sirprize/Flickr/Photo/Collection.php';
 		$photo = new \Sirprize\Flickr\Photo\Collection();
 		$photo
 			->setService($this)

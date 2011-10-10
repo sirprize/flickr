@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\Photo;
 
 
-#require_once 'Sirprize/Flickr/Core/Collection.php';
 
 
 /**
@@ -38,7 +37,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	 */
 	public function getPhotoInstance()
 	{
-		#require_once 'Sirprize/Flickr/Photo/Entity.php';
 		$photo = new \Sirprize\Flickr\Photo\Entity();
 		$photo
 			->setRestClient($this->_getRestClient())
@@ -63,7 +61,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$photo instanceof \Sirprize\Flickr\Photo\Entity)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('expecting an instance of \Sirprize\Flickr\Photo\Entity');
 		}
 		
@@ -146,7 +143,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
@@ -157,7 +153,6 @@ class Collection extends \Sirprize\Flickr\Core\Collection
 	{
 		if(!$this->_started)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('collection must be started before calling '.__METHOD__);
 		}
 		

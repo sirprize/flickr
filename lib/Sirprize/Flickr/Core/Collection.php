@@ -113,7 +113,6 @@ class Collection extends \SplObjectStorage
 	{
 		if($this->_service === null)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('call setService() before '.__METHOD__);
 		}
 		
@@ -126,7 +125,6 @@ class Collection extends \SplObjectStorage
 	{
 		if($this->_restClient === null)
 		{
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception('call setRestClient() before '.__METHOD__);
 		}
 		

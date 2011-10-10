@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\Rest\ResponseHandler;
 
 
-#require_once 'Sirprize/Rest/ResponseHandler/Php.php';
 
 
 class Php extends \Sirprize\Rest\ResponseHandler\Php

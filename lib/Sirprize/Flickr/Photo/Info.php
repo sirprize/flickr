@@ -18,7 +18,6 @@
 namespace Sirprize\Flickr\Photo;
 
 
-#require_once 'Sirprize/Flickr/Core/Entity.php';
 
 
 /**
@@ -90,7 +89,6 @@ class Info extends \Sirprize\Flickr\Core\Entity
 			// connection error
 			$this->_onStartError($this->_getOnStartErrorMessage($e->getMessage()));
 			
-			#require_once 'Sirprize/Flickr/Exception.php';
 			throw new \Sirprize\Flickr\Exception($exception->getMessage());
 		}
 	}
